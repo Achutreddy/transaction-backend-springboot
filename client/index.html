@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transactions</title>
+</head>
+
+<body>
+<center>
+<h2>Transaction List</h2>
+
+<table border="1" id="txnTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+<!--calling backend api here to fetch and show data from DB, frontend is fetching the data using an api.-->
+<!--frontend is not directly connected to DB.-->
+    fetch("http://localhost:8080/api/transactions")
+        .then(res => res.json())
+        .then(data => {
+            const tbody = document.querySelector("#txnTable tbody");
+            data.forEach(txn => {
+                const row = `
+                    <tr>
+                        <td>${txn.id}</td>
+                        <td>${txn.amount}</td>
+                        <td>${txn.description}</td>
+                        <td>${txn.transactionType}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        });
+</script>
+</center>
+</body>
+</html>
