@@ -20,6 +20,7 @@ public class TransactionService {
     }
 
     public Transaction save(Transaction transaction) {
+
         transaction.setStatus(TransactionStatus.CREATED);
         transaction.setCreatedAt(LocalDateTime.now());
         return repository.save(transaction);

@@ -25,7 +25,7 @@ public class Account {
     @PositiveOrZero
     private BigDecimal balance;
 
-    public BigDecimal getBalance() {
+    public BigDecimal  getBalance() {
         return balance;
     }
 

@@ -19,7 +19,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String description;
     @NotNull
     @Positive
     private Double amount;
