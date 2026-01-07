@@ -14,10 +14,14 @@ import jakarta.persistence.Enumerated;
 @Entity
 @Data // Generates getters, setters, toString, equals, and hashCode
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long accountId;
+
+    private String description;
+
+    public Double getAmount() { return amount; }
 
     @NotNull
     @Positive
@@ -26,6 +30,12 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionStatus status;
     private LocalDateTime createdAt;
+
+    public String getTransactionType() { return transactionType; }
+    public void setTransactionType(String transactionType) { this.transactionType = transactionType; }
+
+    public Long getAccountId() { return accountId; }
+    public void setAccountId(Long accountId) { this.accountId = accountId; }
 
     public TransactionStatus getStatus() {
         return status;

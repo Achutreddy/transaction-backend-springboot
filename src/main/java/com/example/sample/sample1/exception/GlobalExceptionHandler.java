@@ -30,4 +30,17 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
+    //custom exception handling
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> handleAccountNotFound(
+            IllegalArgumentException ex){
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.NOT_FOUND.value());
+        response.put("error", "Not Found");
+        response.put("message", ex.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 }
