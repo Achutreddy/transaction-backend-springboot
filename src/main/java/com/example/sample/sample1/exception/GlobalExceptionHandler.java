@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    //custom exception handling
+    //Exception handling
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleAccountNotFound(
             IllegalArgumentException ex){
@@ -42,5 +42,23 @@ public class GlobalExceptionHandler {
         response.put("message", ex.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    //Custom exception handling
+    @ExceptionHandler(InsufficientFundsException.class)
+    public ResponseEntity<Object> handleInsufficientFunds(InsufficientFundsException ex){
+        Map<String, Object> response = new HashMap<>();
+        response.put("timestamp", LocalDateTime.now());
+        response.put("status", HttpStatus.BAD_REQUEST.value());
+        response.put("error", "Insufficient Funds");
+        response.put("message", ex.getMessage());
+
+        Map<String , Object> details = new HashMap<>();
+        details.put("AccountId: ", ex.getAccountId());
+        details.put("Available Balance: ", ex.getAvailableBalance());
+        details.put("Transaction Amount", ex.getTransactionAmount());
+
+        response.put("details", details);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

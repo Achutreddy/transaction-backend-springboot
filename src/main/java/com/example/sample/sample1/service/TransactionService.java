@@ -1,5 +1,6 @@
 package com.example.sample.sample1.service;
 
+import com.example.sample.sample1.exception.InsufficientFundsException;
 import com.example.sample.sample1.model.Account;
 import com.example.sample.sample1.model.Transaction;
 import com.example.sample.sample1.model.TransactionStatus;
@@ -33,17 +34,15 @@ public class TransactionService {
 
         if(type.equals("DEBIT")) {
             if (account.getBalance().compareTo(amount) < 0) {
-                transaction.setStatus(TransactionStatus.FAILED);
-            } else {
-                transaction.setStatus(TransactionStatus.CREATED);
-                account.setBalance(account.getBalance().subtract(amount));
+                throw new InsufficientFundsException("Your account has insufficient funds to make this transaction",
+                        accountId.toString(), account.getBalance().toPlainString(),amount.toPlainString());
             }
+            account.setBalance(account.getBalance().subtract(amount));
         }
         else if(type.equals("CREDIT")){
-            transaction.setStatus(TransactionStatus.CREATED);
             account.setBalance(account.getBalance().add(amount));
         }
-
+        transaction.setStatus(TransactionStatus.CREATED);
         transaction.setCreatedAt(LocalDateTime.now());
         return repository.save(transaction);
     }
