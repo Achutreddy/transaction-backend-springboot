@@ -11,3 +11,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+jwt:
+  secret: your_super_secret_jwt_key_that_is_long_enough_for_HS512_as_it_must_have_a_size_greater_than_512_bits
+  expiration: 86400000
