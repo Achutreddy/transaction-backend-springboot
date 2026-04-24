@@ -1,5 +1,5 @@
 # SampleSpringBootProject
-Explains SpringBoot backend + simple HTML frontend + Spring Data JPA
+Explains SpringBoot backend + simple HTML frontend + Spring Data JPA + JWT
 
 __project is generated from https://start.spring.io/ with required dependencies__
 - check build.gradle(dependencies section)
@@ -32,3 +32,6 @@ __check how frontend is working__
 __Spring Data JPA__
 
 notice how db queries happening using java, we didn't write a single sql query that's the magic of ORM
+
+**JWT Implementation**
+- Implemented JWT in the project for all APIs except User registration and Login API. So user need to login, get the JWT token and pass this token in Authorization header for every API call.
