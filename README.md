@@ -35,16 +35,23 @@ notice how db queries happening using java, we didn't write a single sql query t
 
 **JWT Implementation**
 - Implemented JWT in the project for all APIs except User registration and Login API. So user need to login, get the JWT token and pass this token in Authorization header for every API call.
+- 
 **How To Test JWT Flow**
+  
 **Register**:
+
 curl -X POST http://localhost:8080/api/auth/register \
 -H "Content-Type: application/json" \
 -d '{"username":"testuser","email":"t@t.com","password":"123456"}'
+
 **Login**:
+
 curl -X POST http://localhost:8080/api/auth/login \
 -H "Content-Type: application/json" \
 -d '{"username":"testuser","password":"123456"}'
 Copy the token from the response.
+
 **Access Protected**:
+
 curl http://localhost:8080/api/secret \
 -H "Authorization: Bearer YOUR_TOKEN_HERE"
