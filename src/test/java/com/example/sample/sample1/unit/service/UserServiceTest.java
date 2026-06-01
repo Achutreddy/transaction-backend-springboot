@@ -119,7 +119,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw Exception when userName doesnt exist")
+    @DisplayName("Should throw Exception when userName doesn't exist")
     void testLoginUserNameInvalid(){
         //Arrange
         when(userRepository.findByUserName(anyString())).thenReturn(null);
